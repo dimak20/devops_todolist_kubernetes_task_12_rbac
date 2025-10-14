@@ -1,8 +1,6 @@
 #!/bin/bash
 
-echo "Creating cluster..."
-kind create cluster --config cluster.yml
-kubectl wait --for=condition=Ready nodes --all --timeout=120s
+set -euo pipefail
 echo "Launching mysql databases..."
 
 kubectl apply -f .infrastructure/mysql/ns.yml
