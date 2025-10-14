@@ -3,6 +3,7 @@
 echo "Creating cluster..."
 kind create cluster --config cluster.yml
 kubectl wait --for=condition=Ready nodes --all --timeout=120s
+echo "Launching mysql databases..."
 
 kubectl apply -f .infrastructure/mysql/ns.yml
 kubectl apply -f .infrastructure/mysql/configMap.yml
@@ -12,6 +13,7 @@ kubectl apply -f .infrastructure/mysql/statefulSet.yml
 
 kubectl -n mysql rollout status statefulset/mysql --timeout=120s
 
+echo "Launching python apps..."
 
 kubectl apply -f .infrastructure/app/ns.yml
 kubectl apply -f .infrastructure/app/pv.yml

@@ -14,3 +14,4 @@ You do not need to receive 403 status code
 kubectl exec -n todoapp --it <pod-name> -- sh
 SERVICEACCOUNT=/var/run/secrets/kubernetes.io/serviceaccount APISERVER=https://kubernetes.default.svc TOKEN=$(cat ${SERVICEACCOUNT}/token) CACERT=${SERVICEACCOUNT}/ca.crt curl --cacert ${CACERT} --header "Authorization: Bearer ${TOKEN}" -X GET ${APISERVER}/api/v1/namespaces/todoapp/secrets
 ```
+JSON list of secrets, 200 OK
